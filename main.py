@@ -3,20 +3,25 @@ import tkinter.font as tkFont
 import csv
 
 def read_csv(csv_file):
-        with open(csv_file, "r", encoding="utf-8") as file:
-            csvreader = csv.reader(file)
-            data_list = []
-            for row in csvreader:
-                data_list.append(row)
-        return data_list
+    # with open(csv_file, "r", encoding="utf-8") as file:
+    #     csvreader = csv.reader(file)
+    #     data_list = []
+    #     for row in csvreader:
+    #         data_list.append(row)
+    #     return data_list
+    file = open(csv_file, "r")
+    data = list(csv.reader(file, delimiter=","))
+    file.close()
+    return data
 
 class App:
     def __init__(self, root):
         def search_client():
             egn = GLineEdit_327.get()
-            for x in range(0, len(clients_list)):
-                if egn in x:
-                    name_label['text'] = x[1]
+            for row in range(0, len(clients_list)):
+                y = clients_csv[row].split(",") 
+                if egn == y[0]:
+                    name_label['text'] = y[1]
                     break
 
         #setting title
