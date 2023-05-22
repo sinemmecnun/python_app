@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.font as tk_font
 
+from src.accounts_screen import AccountsScreen
 from src.clients_screen import ClientsScreen
 
 
@@ -54,7 +55,9 @@ class MainScreen:
         root.mainloop()
 
     def task_2_command(self):
-        print("command")
+        root = tk.Tk()
+        app = AccountsScreen(root)
+        root.mainloop()
 
     def task_3_command(self):
         print("command")
