@@ -3,6 +3,7 @@ import tkinter.font as tk_font
 
 from src.accounts_screen import AccountsScreen
 from src.clients_screen import ClientsScreen
+from src.search_by_date import SearchByDate
 
 
 class MainScreen:
@@ -60,7 +61,9 @@ class MainScreen:
         root.mainloop()
 
     def task_3_command(self):
-        print("command")
+        root = tk.Tk()
+        app = SearchByDate(root)
+        root.mainloop()
 
     def task_4_command(self):
         print("command")
