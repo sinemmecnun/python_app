@@ -47,16 +47,14 @@ class SearchByDate:
             label.config(text="Selected Date: " + calendar.get_date())
 
         #in cmd -> pip install tkcalendar
-        calendar = Calendar(root, date_pattern='DD/mm/yyyy')
+        calendar = Calendar(root, date_pattern='DD.mm.yyyy')
         calendar.pack()
         calendar.bind('<<CalendarSelected>>', updateLabel)
         
         label = tk.Label(root, text="Selected Date: ")
         label.pack()
 
-
         #таблицата
-
         curr_dict = {}
         for operation in operations_list[1:]:
             if operation[4] == calendar.get_date():
@@ -79,6 +77,8 @@ class SearchByDate:
                         'Код операция': operation_code,
                         'Сума': operation_amount
                     }
+
+        print(curr_dict)
 
         for operation_account in curr_dict:
             table.insert('', 'end', text="1", values=(curr_dict['Акаунт'], curr_dict['Име'],
