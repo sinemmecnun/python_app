@@ -11,7 +11,7 @@ def read_csv(csv_file):
         data_list = []
         for row in csv_reader:
             data_list.append(row)
-        del data_list[0]
+        # del data_list[0]
         return data_list
 
 
@@ -48,14 +48,14 @@ for client in clients_list:
 
 for account in accounts_list:
     egn, iban = account
-    clients_dict[egn]['accounts'].append(iban)
+    # clients_dict[egn]['accounts'].append(iban)
 
 for operation in operations_list:
     id, iban, type, sum, date = operation
     if iban not in operations_dict:
         operations_dict[iban] = {}
     operations_dict[iban][id] = {}
-    operations_dict[iban][id]['type'] = types_dict[type]
+    # operations_dict[iban][id]['type'] = types_dict[type]
     operations_dict[iban][id]['sum'] = sum
     operations_dict[iban][id]['date'] = date
 
