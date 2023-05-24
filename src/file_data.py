@@ -11,7 +11,7 @@ def read_csv(csv_file):
         data_list = []
         for row in csv_reader:
             data_list.append(row)
-        # del data_list[0]
+        del data_list[0]
         return data_list
 
 
@@ -20,7 +20,6 @@ clients_list = read_csv(clients_csv)
 
 accounts_list = read_csv(acc_csv)
 # egn, iban
-print(accounts_list)
 
 types_list = read_csv(types_csv)
 types_dict = {}
@@ -30,34 +29,31 @@ operations_list = read_csv(operations_csv)
 # iban, type, sum, date
 
 # IMPORTANT
-clients_dict = {}
-operations_dict = {}
-
+# clients_dict = {}
+# operations_dict = {}
+#
 for type in types_list:
     id, operation_type = type
     if id not in types_dict:
         types_dict[id] = ''
     types_dict[id] = operation_type
-
-for client in clients_list:
-    egn, name = client
-    if egn not in clients_dict.keys():
-        clients_dict[egn] = {}
-        clients_dict[egn]['accounts'] = []
-    clients_dict[egn]['name'] = name
-
-for account in accounts_list:
-    egn, iban = account
-    # clients_dict[egn]['accounts'].append(iban)
-
-for operation in operations_list:
-    id, iban, type, sum, date = operation
-    if iban not in operations_dict:
-        operations_dict[iban] = {}
-    operations_dict[iban][id] = {}
-    # operations_dict[iban][id]['type'] = types_dict[type]
-    operations_dict[iban][id]['sum'] = sum
-    operations_dict[iban][id]['date'] = date
-
-for key, values in clients_dict.items():
-    print(f"{key}--- {values}")
+#
+# for client in clients_list:
+#     egn, name = client
+#     if egn not in clients_dict.keys():
+#         clients_dict[egn] = {}
+#         clients_dict[egn]['accounts'] = []
+#     clients_dict[egn]['name'] = name
+#
+# for account in accounts_list:
+#     egn, iban = account
+#     # clients_dict[egn]['accounts'].append(iban)
+#
+# for operation in operations_list:
+#     id, iban, type, sum, date = operation
+#     if iban not in operations_dict:
+#         operations_dict[iban] = {}
+#     operations_dict[iban][id] = {}
+#     # operations_dict[iban][id]['type'] = types_dict[type]
+#     operations_dict[iban][id]['sum'] = sum
+#     operations_dict[iban][id]['date'] = date

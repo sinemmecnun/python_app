@@ -3,6 +3,7 @@ import tkinter.font as tk_font
 
 from src.accounts_screen import AccountsScreen
 from src.clients_screen import ClientsScreen
+from src.exposition_screen import SortBySum
 from src.search_by_date import SearchByDate
 
 
@@ -52,21 +53,23 @@ class MainScreen:
 
     def task_1_command(self):
         root = tk.Tk()
-        app = ClientsScreen(root)
+        ClientsScreen(root)
         root.mainloop()
 
     def task_2_command(self):
         root = tk.Tk()
-        app = AccountsScreen(root)
+        AccountsScreen(root)
         root.mainloop()
 
     def task_3_command(self):
         root = tk.Tk()
-        app = SearchByDate(root)
+        SearchByDate(root)
         root.mainloop()
 
     def task_4_command(self):
-        print("command")
+        root = tk.Tk()
+        SortBySum(root)
+        root.mainloop()
 
     def task_5_command(self):
         print("command")
