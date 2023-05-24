@@ -29,25 +29,25 @@ operations_list = read_csv(operations_csv)
 # iban, type, sum, date
 
 # IMPORTANT
-# clients_dict = {}
-# operations_dict = {}
-#
+clients_dict = {}
+operations_dict = {}
+
 for type in types_list:
     id, operation_type = type
     if id not in types_dict:
         types_dict[id] = ''
     types_dict[id] = operation_type
-#
-# for client in clients_list:
-#     egn, name = client
-#     if egn not in clients_dict.keys():
-#         clients_dict[egn] = {}
-#         clients_dict[egn]['accounts'] = []
-#     clients_dict[egn]['name'] = name
-#
-# for account in accounts_list:
-#     egn, iban = account
-#     # clients_dict[egn]['accounts'].append(iban)
+
+for client in clients_list:
+    egn, name = client
+    if egn not in clients_dict.keys():
+        clients_dict[egn] = {}
+        clients_dict[egn]['accounts'] = []
+    clients_dict[egn]['name'] = name
+
+for account in accounts_list:
+    egn, iban = account
+    clients_dict[egn]['accounts'].append(iban)
 #
 # for operation in operations_list:
 #     id, iban, type, sum, date = operation

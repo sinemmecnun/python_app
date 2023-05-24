@@ -42,11 +42,10 @@ class SortBySum:
         table.column("amount", width=50)
 
         def filter_by_type(event):
-            print('neshto')
-            print(combo_1.get())
+            print(operation_type_combobox.get())
 
         def select_sort_command(event):
-            print(combo_2.get())
+            print(sort_type_combobox.get())
 
         spacer1 = tk.Label(root, text='\n')
         spacer1.pack()
@@ -55,24 +54,21 @@ class SortBySum:
         for operation_id, operation_type in types_dict.items():
             options.append(operation_type)
 
-        combo_1 = tk.StringVar()
-        combo_2 = tk.StringVar()
-
         select_message = tk.Label(root, text="Изберете операция:")
         select_message.pack()
 
-        operation_type_combobox = Combobox(root,textvariable=combo_1)
+        operation_type_combobox = Combobox(root)
         operation_type_combobox['values'] = options
         operation_type_combobox.current(0)
-        operation_type_combobox.pack()
         operation_type_combobox.bind('<<ComboboxSelected>>', filter_by_type)
+        operation_type_combobox.pack()
 
         select_sort = tk.Label(root, text="Изберете тип сортиране:")
         select_sort.pack()
 
-        sort_type_combobox = Combobox(root, textvariable=combo_2)
+        sort_type_combobox = Combobox(root)
         sort_type_combobox['values'] = ('asc', 'desc')
         sort_type_combobox.current(0)
-        sort_type_combobox.pack()
         sort_type_combobox.bind('<<ComboboxSelected>>', select_sort_command)
+        sort_type_combobox.pack()
 

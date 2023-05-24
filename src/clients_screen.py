@@ -1,5 +1,4 @@
 import tkinter as tk
-import tkinter.font as tk_font
 from tkinter import ttk
 
 from src.file_data import clients_list
