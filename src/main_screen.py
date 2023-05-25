@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.font as tk_font
 
+from src.account_balance import AccountBalance
 from src.accounts_screen import AccountsScreen
 from src.client_exposition import ClientExposition
 from src.clients_screen import ClientsScreen
@@ -57,15 +58,18 @@ class MainScreen:
         ClientsScreen(root)
         root.mainloop()
 
+
     def task_2_command(self):
         root = tk.Tk()
         AccountsScreen(root)
         root.mainloop()
 
+
     def task_3_command(self):
         root = tk.Tk()
         ClientExposition(root)
         root.mainloop()
+
 
     def task_4_command(self):
         root = tk.Tk()
@@ -78,4 +82,6 @@ class MainScreen:
         root.mainloop()
 
     def task_6_command(self):
-        print("command")
+        root = tk.Tk()
+        AccountBalance(root)
+        root.mainloop()

@@ -8,7 +8,7 @@ from src.file_data import accounts_list
 class AccountsScreen:
     def __init__(self, root):
         #setting title
-        root.title("accounts screen")
+        root.title("Разплащателни сметки в левове")
         #setting window size
         width=500
         height=400

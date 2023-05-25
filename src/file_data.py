@@ -1,11 +1,13 @@
 import csv
 
+# sets the paths to the data
 clients_csv = "./data/clients.csv"
 acc_csv = "./data/accounts.csv"
 types_csv = "./data/operation_types.csv"
 operations_csv = "./data/operations.csv"
 
 def read_csv(csv_file):
+    # reads data from files
     with open(csv_file, "r", encoding="utf-8") as file:
         csv_reader = csv.reader(file)
         data_list = []
@@ -15,6 +17,7 @@ def read_csv(csv_file):
         return data_list
 
 
+# gets lists from each file
 clients_list = read_csv(clients_csv)
 # egn, name
 
@@ -22,38 +25,70 @@ accounts_list = read_csv(acc_csv)
 # egn, iban
 
 types_list = read_csv(types_csv)
-types_dict = {}
 # id, type
 
 operations_list = read_csv(operations_csv)
 # iban, type, sum, date
 
-# IMPORTANT
-clients_dict = {}
-operations_dict = {}
+def fill_types_dict(types_list_temp):
+    temp_dict = {}
 
-for type in types_list:
-    id, operation_type = type
-    if id not in types_dict:
-        types_dict[id] = ''
-    types_dict[id] = operation_type
+    for type in types_list_temp:
+        id, operation_type = type
+        if id not in temp_dict:
+            temp_dict[id] = ''
+        temp_dict[id] = operation_type
 
-for client in clients_list:
-    egn, name = client
-    if egn not in clients_dict.keys():
-        clients_dict[egn] = {}
-        clients_dict[egn]['accounts'] = []
-    clients_dict[egn]['name'] = name
+    return temp_dict
 
-for account in accounts_list:
-    egn, iban = account
-    clients_dict[egn]['accounts'].append(iban)
-#
-# for operation in operations_list:
-#     id, iban, type, sum, date = operation
-#     if iban not in operations_dict:
-#         operations_dict[iban] = {}
-#     operations_dict[iban][id] = {}
-#     # operations_dict[iban][id]['type'] = types_dict[type]
-#     operations_dict[iban][id]['sum'] = sum
-#     operations_dict[iban][id]['date'] = date
+
+def fill_clients_list():
+    clients_dict = {}
+    for client in clients_list:
+        egn, name = client
+        if egn not in clients_dict.keys():
+            clients_dict[egn] = {}
+            clients_dict[egn]['accounts'] = []
+        clients_dict[egn]['name'] = name
+
+    for account in accounts_list:
+        egn, iban = account
+        clients_dict[egn]['accounts'].append(iban)
+
+    return clients_dict
+
+
+def fill_operation_dict():
+    operations_dict = {}
+    for operation in operations_list:
+        iban, type, sum, date = operation
+        if iban not in operations_dict:
+            operations_dict[iban] = []
+
+        temp_dict = {
+            'type': types_dict[type],
+            'sum': float(sum),
+            'date': date}
+
+        operations_dict[iban].append(temp_dict)
+
+    return operations_dict
+
+
+types_dict = fill_types_dict(types_list)
+clients_dict = fill_clients_list()
+operations_dict = fill_operation_dict()
+
+balance_sheet = {}
+
+for iban, operations in operations_dict.items():
+    current_iban = 0
+    for operation in operations:
+        type = operation['type']
+
+        sum = float(operation['sum'])
+        multiplier = 1 if type == "Вноска" else -1
+
+        current_iban += sum * multiplier
+    balance_sheet[iban] = current_iban
+

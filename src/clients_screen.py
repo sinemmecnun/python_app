@@ -7,7 +7,7 @@ from src.file_data import clients_list
 class ClientsScreen:
     def __init__(self, root):
         #setting title
-        root.title("clients screen")
+        root.title("Клиенти")
         #setting window size
         width=500
         height=200

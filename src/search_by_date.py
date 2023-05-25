@@ -9,7 +9,7 @@ from src.file_data import accounts_list
 class SearchByDate:
     def __init__(self, root):
         #setting title
-        root.title("by date")
+        root.title("Дневен операционен дневник")
         #setting window size
         width=1000
         height=500
@@ -50,7 +50,7 @@ class SearchByDate:
             for operation in operations_list:
                 egn = None
                 client_name = None
-                _, iban, type, sum, date = operation
+                iban, type, sum, date = operation
                 operation_type_string = types_dict[type]
 
                 if date != selected_date:

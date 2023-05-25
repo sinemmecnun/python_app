@@ -2,14 +2,13 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.ttk import Combobox
 
-from src.file_data import operations_list, types_dict
-from src.file_data import clients_list
-from src.file_data import accounts_list
+from src.file_data import types_dict
+
 
 class SortBySum:
     def __init__(self, root):
         #setting title
-        root.title('filter by type and sort by sum')
+        root.title('Операционен дневник')
         #setting window size
         width=1000
         height=500
@@ -72,3 +71,11 @@ class SortBySum:
         sort_type_combobox.bind('<<ComboboxSelected>>', select_sort_command)
         sort_type_combobox.pack()
 
+        spacer2 = tk.Label(root, text='\n')
+        spacer2.pack()
+
+        export_button = tk.Button(root, text="Export", command=filter_by_type)
+        export_button.pack()
+
+        spacer_3 = tk.Label(root, text='')
+        spacer_3.pack()

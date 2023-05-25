@@ -1,14 +1,13 @@
 import tkinter as tk
-from tkinter import ttk
 from tkinter.ttk import Combobox
 
-from src.file_data import clients_list, clients_dict
+from src.file_data import clients_dict
 
 
 class ClientExposition:
     def __init__(self, root):
         #setting title
-        root.title("client exposition")
+        root.title("Експозиция на клиента")
         #setting window size
         width=500
         height=200
@@ -23,8 +22,10 @@ class ClientExposition:
             exposition.pack()
 
             egn = egn_combobox.get()
-            result = [x for x in clients_dict[egn]['accounts']]
-            exposition['text'] = '\n'.join(result)
+            name = clients_dict[egn]['name']
+            result = f'Клиент: {name}\n ЕГН: {egn}\n\n'
+            result += "".join([f"{x} | BGN\n" for x in clients_dict[egn]['accounts']])
+            exposition['text'] = result
 
         options = [x for x in clients_dict.keys()]
 
