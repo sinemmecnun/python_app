@@ -33,7 +33,7 @@ class AccountBalance:
             name = clients_dict[egn]['name']
 
             transactions_string = f'Клиент: {name}\n' \
-                                  f'ЕГН: {egn}' \
+                                  f'ЕГН: {egn}\n' \
                                   f'IBAN: {iban_temp}\n' \
                                   f'Разполагаемост: {balance_sheet[iban_temp]:.2f} BGN\n\n' \
                                   f'Движения по сметката:\n'

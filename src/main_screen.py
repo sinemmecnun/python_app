@@ -12,7 +12,7 @@ from src.search_by_date import SearchByDate
 class MainScreen:
     def __init__(self, root):
         # setting title
-        root.title("касови операции")
+        root.title("Касови операции")
         # setting window size
         width = 510
         height = 256

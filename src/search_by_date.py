@@ -21,7 +21,7 @@ class SearchByDate:
 
         table = ttk.Treeview(root)
         table.pack(fill=tk.BOTH, expand=True)
-        table["columns"] = ('acc', 'full_name', 'egn', 'operation', 'amount')
+        table["columns"] = ('acc', 'egn','full_name', 'operation', 'amount')
 
         table.heading("#0", text="Index")
         table.column("#0", width=20)

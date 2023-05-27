@@ -20,7 +20,7 @@ class ClientsScreen:
         table = ttk.Treeview(root)
         table.pack(fill=tk.BOTH, expand=True)
         table["columns"] = ('egn', 'name')
-        table.heading("#0", text="Index")
+        table.heading("#0", text="Номер")
         table.column("#0", width=50)
         table.heading('egn', text='ЕГН')
         table.heading('name', text='Име')
