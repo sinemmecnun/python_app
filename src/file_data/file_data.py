@@ -98,6 +98,8 @@ def calculate_balance():
 def operations_full_list_func():
     operations_full_list = []
     for operation in operations_list:
+        if not operation:
+            continue
         iban, type, sum, date = operation
         sum = float(sum)
         operation_type_string = types_dict[type]
