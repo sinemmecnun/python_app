@@ -56,6 +56,7 @@ class MainScreen:
 
         buttons[6].place(x=200, y=240, width=120, height=60)
         buttons[6]["command"] = self.task_7_command
+
     def task_1_command(self):
         root = tk.Tk()
         ClientsScreen(root)

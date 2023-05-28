@@ -32,7 +32,7 @@ operations_list = read_csv(operations_csv)
 
 def fill_types_dict(types_list_temp):
     temp_dict = {}
-
+    # {id: tip}
     for type in types_list_temp:
         id, operation_type = type
         if id not in temp_dict:
@@ -41,9 +41,9 @@ def fill_types_dict(types_list_temp):
 
     return temp_dict
 
-
 def fill_clients_dict():
     clients_dict = {}
+    # {egn: {name: "", accounts: [..., ...]}}
     for client in clients_list:
         egn, name = client
         if egn not in clients_dict.keys():
@@ -60,6 +60,7 @@ def fill_clients_dict():
 
 def fill_operation_dict():
     operations_dict = {}
+    # {iban: [{type: "", sum: ..., date: ""}, {}]}
     for operation in operations_list:
         if not operation:
             continue
@@ -69,7 +70,7 @@ def fill_operation_dict():
 
         temp_dict = {
             'type': types_dict[type],
-            'sum': float(sum),
+            'sum': sum,
             'date': date}
 
         operations_dict[iban].append(temp_dict)
@@ -82,16 +83,17 @@ types_dict = fill_types_dict(types_list)
 def calculate_balance():
     operations_dict = fill_operation_dict()
     balance_sheet = {}
+    # {iban: balance}
     for iban, operations in operations_dict.items():
-        current_iban = 0
+        current_balance = 0
         for operation in operations:
             type = operation['type']
 
             sum = float(operation['sum'])
             multiplier = 1 if type == "Вноска" else -1
 
-            current_iban += sum * multiplier
-        balance_sheet[iban] = current_iban
+            current_balance += sum * multiplier
+        balance_sheet[iban] = current_balance
 
     return balance_sheet
 
@@ -101,7 +103,6 @@ def operations_full_list_func():
         if not operation:
             continue
         iban, type, sum, date = operation
-        sum = float(sum)
         operation_type_string = types_dict[type]
 
         egn = [x[0] for x in accounts_list if x[1] == iban][0]
@@ -112,4 +113,4 @@ def operations_full_list_func():
 
     return operations_full_list
 
-
+clients_dict = fill_clients_dict()

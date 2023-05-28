@@ -59,9 +59,9 @@ class SortBySum:
             filtered_list = filter_options[filter_value]
 
             if sort_value == 'asc':
-                sorted_list = sorted(filtered_list, key=lambda x: x[4])
+                sorted_list = sorted(filtered_list, key=lambda x: float(x[4]))
             else:
-                sorted_list = sorted(filtered_list, key=lambda x: -x[4])
+                sorted_list = sorted(filtered_list, key=lambda x: -float(x[4]))
 
 
             for idx, row in enumerate(sorted_list):

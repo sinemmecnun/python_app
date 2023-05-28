@@ -11,8 +11,8 @@ class AccountBalance:
         #setting title
         self.root.title('Справка по сметка')
         #setting window size
-        width=800
-        height=400
+        width=700
+        height=800
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         align_str = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)

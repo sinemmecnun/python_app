@@ -44,6 +44,8 @@ class SearchByDate:
         def update_label(event):
             selected_date = calendar.get_date()
             label.config(text="Selected Date: " + selected_date)
+
+            # clears the table
             table.delete(*table.get_children())
 
             filtered_list = []
@@ -72,6 +74,8 @@ class SearchByDate:
                         break
 
                 filtered_list.append([iban, egn, client_name, operation_type_string, sum])
+
+            # fills the table
             for idx, row in enumerate(filtered_list):
                 table.insert("", "end",text = str(idx + 1), values=row)
 

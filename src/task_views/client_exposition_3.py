@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter.ttk import Combobox
 
-from src.file_data.file_data import fill_clients_dict
+from src.file_data.file_data import clients_dict
 
 
 class ClientExposition:
@@ -17,21 +17,24 @@ class ClientExposition:
         root.geometry(align_str)
         root.resizable(width=False, height=False)
 
-        clients_dict = fill_clients_dict()
         def get_accounts(event):
             exposition['text'] = ''
-            exposition.pack()
 
+            # gets the selected egn
             egn = egn_combobox.get()
+
+            # gets the clients name based on the egn
+            # list comprehension with joins concats the client's bank accounts
             name = clients_dict[egn]['name']
             result = f'Клиент: {name}\n ЕГН: {egn}\n\n'
             result += "".join([f"{x} | BGN\n" for x in clients_dict[egn]['accounts']])
             exposition['text'] = result
 
-        options = [x for x in clients_dict.keys()]
+        # gets egns to set as options for the combobox
+        egn_options = [x for x in clients_dict.keys()]
 
         egn_combobox = Combobox(root)
-        egn_combobox['values'] = options
+        egn_combobox['values'] = egn_options
         egn_combobox.current(0)
         egn_combobox.bind('<<ComboboxSelected>>', get_accounts)
         egn_combobox.pack()
