@@ -83,7 +83,7 @@ class SortBySum:
         operation_type_combobox.current(0)
         operation_type_combobox.pack()
 
-        select_sort = tk.Label(root, text="Изберете тип сортиране:")
+        select_sort = tk.Label(root, text="Изберете тип сортиране на сума:")
         select_sort.pack()
 
         sort_type_combobox = Combobox(root)

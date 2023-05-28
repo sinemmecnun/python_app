@@ -30,13 +30,13 @@ class AddOperation:
             iban_temp = iban_combobox.get()
             operation_type = operation_type_combobox.get()
             operation_type_string = [x[0] for x in types_list if x[1] == operation_type][0]
-            operation_sum = sum_textbox.get('1.0', END)
-            operation_sum.strip('\n')
+            operation_sum = sum_textbox.get('1.0', 'end-1c')
             try:
-                operation_sum = f"{float(operation_sum):.2f}"
+                operation_sum = float(operation_sum)
+                operation_sum = f"{operation_sum:.2f}"
             except ValueError:
                 operation_text['text'] = 'Невалидна сума'
-
+                return
 
             today = date.today()
             current_date = today.strftime("%d.%m.%Y")
