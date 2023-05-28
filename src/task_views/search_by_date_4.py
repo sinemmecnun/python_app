@@ -48,6 +48,8 @@ class SearchByDate:
 
             filtered_list = []
             for operation in operations_list:
+                if not operation:
+                    continue
                 egn = None
                 client_name = None
                 iban, type, sum, date = operation
