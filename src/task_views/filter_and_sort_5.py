@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.ttk import Combobox
 
-from src.file_data import types_dict, operations_full_list_func
+from src.file_data.file_data import types_dict, operations_full_list_func
 
 
 class SortBySum:

@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter.ttk import Combobox
 
-from src.file_data import clients_dict, balance_sheet, operations_dict, accounts_list, clients_list, calculate_balance, \
-    fill_operation_dict
+from src.file_data.file_data import accounts_list, clients_list, calculate_balance, fill_operation_dict, \
+    fill_clients_dict
 
 
 class AccountBalance:
@@ -19,6 +19,7 @@ class AccountBalance:
         self.root.geometry(align_str)
         self.root.resizable(width=False, height=False)
 
+        clients_dict = fill_clients_dict()
         def egn_selected(event):
             done_label['text'] = ''
 

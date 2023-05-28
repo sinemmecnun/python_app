@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter.ttk import Combobox
 
-from src.file_data import clients_dict
+from src.file_data.file_data import fill_clients_dict
 
 
 class ClientExposition:
@@ -17,6 +17,7 @@ class ClientExposition:
         root.geometry(align_str)
         root.resizable(width=False, height=False)
 
+        clients_dict = fill_clients_dict()
         def get_accounts(event):
             exposition['text'] = ''
             exposition.pack()

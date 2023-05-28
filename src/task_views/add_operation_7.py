@@ -4,7 +4,7 @@ from datetime import date
 from tkinter import END
 from tkinter.ttk import Combobox
 
-from src.file_data import clients_list, clients_dict, types_list, operations_list
+from src.file_data.file_data import clients_list, types_list, operations_list, fill_clients_dict
 
 
 class AddOperation:
@@ -21,6 +21,7 @@ class AddOperation:
         self.root.geometry(align_str)
         self.root.resizable(width=False, height=False)
 
+        clients_dict = fill_clients_dict()
         def egn_selected(event):
             egn_temp = egn_combobox.get()
             iban_combobox['values'] = [x for x in clients_dict[egn_temp]['accounts']]

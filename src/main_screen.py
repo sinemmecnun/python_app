@@ -1,13 +1,13 @@
 import tkinter as tk
 import tkinter.font as tk_font
 
-from src.account_balance import AccountBalance
-from src.accounts_screen import AccountsScreen
-from src.add_operation import AddOperation
-from src.client_exposition import ClientExposition
-from src.clients_screen import ClientsScreen
-from src.filter_and_sort import SortBySum
-from src.search_by_date import SearchByDate
+from src.task_views.account_balance_6 import AccountBalance
+from src.task_views.accounts_screen_2 import AccountsScreen
+from src.task_views.add_operation_7 import AddOperation
+from src.task_views.client_exposition_3 import ClientExposition
+from src.task_views.clients_screen_1 import ClientsScreen
+from src.task_views.filter_and_sort_5 import SortBySum
+from src.task_views.search_by_date_4 import SearchByDate
 
 
 class MainScreen:

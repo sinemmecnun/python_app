@@ -2,9 +2,9 @@ import tkinter as tk
 from tkinter import ttk
 from tkcalendar import Calendar
 
-from src.file_data import operations_list, types_dict
-from src.file_data import clients_list
-from src.file_data import accounts_list
+from src.file_data.file_data import operations_list, types_dict
+from src.file_data.file_data import clients_list
+from src.file_data.file_data import accounts_list
 
 class SearchByDate:
     def __init__(self, root):

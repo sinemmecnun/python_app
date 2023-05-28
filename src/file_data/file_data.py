@@ -42,7 +42,7 @@ def fill_types_dict(types_list_temp):
     return temp_dict
 
 
-def fill_clients_list():
+def fill_clients_dict():
     clients_dict = {}
     for client in clients_list:
         egn, name = client
@@ -78,8 +78,6 @@ def fill_operation_dict():
 
 
 types_dict = fill_types_dict(types_list)
-clients_dict = fill_clients_list()
-operations_dict = fill_operation_dict()
 
 def calculate_balance():
     operations_dict = fill_operation_dict()
@@ -96,8 +94,6 @@ def calculate_balance():
         balance_sheet[iban] = current_iban
 
     return balance_sheet
-
-balance_sheet = calculate_balance()
 
 def operations_full_list_func():
     operations_full_list = []
