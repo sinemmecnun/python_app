@@ -34,6 +34,7 @@ class AccountBalance:
                 return
 
             egn = [x[0] for x in accounts_list if x[1] == iban_temp][0]
+
             name = clients_dict[egn]['name']
 
             transactions_string = f'Клиент: {name}\n' \
