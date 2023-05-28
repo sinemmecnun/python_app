@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter.ttk import Combobox
 
-from src.file_data import clients_dict, balance_sheet, operations_dict, accounts_list, clients_list
+from src.file_data import clients_dict, balance_sheet, operations_dict, accounts_list, clients_list, calculate_balance, \
+    fill_operation_dict
 
 
 class AccountBalance:
@@ -26,6 +27,8 @@ class AccountBalance:
 
         def account_selected(event):
             iban_temp = iban_combobox.get()
+            balance_sheet = calculate_balance()
+            operations_dict = fill_operation_dict()
             if iban_temp not in balance_sheet.keys():
                 return
 

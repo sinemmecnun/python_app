@@ -3,6 +3,7 @@ import tkinter.font as tk_font
 
 from src.account_balance import AccountBalance
 from src.accounts_screen import AccountsScreen
+from src.add_operation import AddOperation
 from src.client_exposition import ClientExposition
 from src.clients_screen import ClientsScreen
 from src.filter_and_sort import SortBySum
@@ -15,7 +16,7 @@ class MainScreen:
         root.title("Касови операции")
         # setting window size
         width = 510
-        height = 256
+        height = 370
 
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
@@ -24,7 +25,7 @@ class MainScreen:
         root.resizable(width=False, height=False)
 
         buttons = []
-        for idx in range(6):
+        for idx in range(7):
             button = tk.Button(root)
             button["bg"] = "#f0f0f0"
             ft = tk_font.Font(family='Times', size=10)
@@ -53,6 +54,8 @@ class MainScreen:
         buttons[5].place(x=350, y=140, width=120, height=60)
         buttons[5]["command"] = self.task_6_command
 
+        buttons[6].place(x=200, y=240, width=120, height=60)
+        buttons[6]["command"] = self.task_7_command
     def task_1_command(self):
         root = tk.Tk()
         ClientsScreen(root)
@@ -84,4 +87,9 @@ class MainScreen:
     def task_6_command(self):
         root = tk.Tk()
         AccountBalance(root)
+        root.mainloop()
+
+    def task_7_command(self):
+        root = tk.Tk()
+        AddOperation(root)
         root.mainloop()

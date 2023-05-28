@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.ttk import Combobox
 
-from src.file_data import types_dict
+from src.file_data import types_dict, operations_full_list_func
 
 
 class SortBySum:
@@ -20,9 +20,9 @@ class SortBySum:
 
         table = ttk.Treeview(root)
         table.pack(fill=tk.BOTH, expand=True)
-        table["columns"] = ('acc', 'full_name', 'egn', 'operation', 'amount')
+        table["columns"] = ('acc', 'egn', 'full_name', 'operation', 'amount', 'date')
 
-        table.heading("#0", text="Index")
+        table.heading("#0", text="Номер")
         table.column("#0", width=20)
 
         table.heading("acc", text="Акаунт")
@@ -31,7 +31,7 @@ class SortBySum:
         table.heading("full_name",text="Име")
         table.column("full_name", width=70)
 
-        table.heading("egn",text="Егн")
+        table.heading("egn",text="ЕГН")
         table.column("egn", width=50)
 
         table.heading("operation",text="Oперация")
@@ -40,11 +40,33 @@ class SortBySum:
         table.heading("amount",text="Сума")
         table.column("amount", width=50)
 
-        def filter_by_type(event):
-            print(operation_type_combobox.get())
+        table.heading('date', text="Дата")
+        table.column('date', width=50)
 
-        def select_sort_command(event):
-            print(sort_type_combobox.get())
+        def search_operations():
+            # clears the table
+            table.delete(*table.get_children())
+            operations_full_list = operations_full_list_func()
+            filter_value = operation_type_combobox.get()
+            sort_value = sort_type_combobox.get()
+
+            filter_options = {
+                "Всички": operations_full_list,
+                "Теглене": [x for x in operations_full_list if x[3] == "Теглене"],
+                "Вноска": [x for x in operations_full_list if x[3] == "Вноска"]
+            }
+
+            filtered_list = filter_options[filter_value]
+
+            if sort_value == 'asc':
+                sorted_list = sorted(filtered_list, key=lambda x: x[4])
+            else:
+                sorted_list = sorted(filtered_list, key=lambda x: -x[4])
+
+
+            for idx, row in enumerate(sorted_list):
+                table.insert("", "end",text = str(idx + 1), values=row)
+
 
         spacer1 = tk.Label(root, text='\n')
         spacer1.pack()
@@ -59,7 +81,6 @@ class SortBySum:
         operation_type_combobox = Combobox(root)
         operation_type_combobox['values'] = options
         operation_type_combobox.current(0)
-        operation_type_combobox.bind('<<ComboboxSelected>>', filter_by_type)
         operation_type_combobox.pack()
 
         select_sort = tk.Label(root, text="Изберете тип сортиране:")
@@ -68,13 +89,12 @@ class SortBySum:
         sort_type_combobox = Combobox(root)
         sort_type_combobox['values'] = ('asc', 'desc')
         sort_type_combobox.current(0)
-        sort_type_combobox.bind('<<ComboboxSelected>>', select_sort_command)
         sort_type_combobox.pack()
 
         spacer2 = tk.Label(root, text='\n')
         spacer2.pack()
 
-        export_button = tk.Button(root, text="Export", command=filter_by_type)
+        export_button = tk.Button(root, text="Search", command=search_operations)
         export_button.pack()
 
         spacer_3 = tk.Label(root, text='')

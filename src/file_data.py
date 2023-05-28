@@ -61,6 +61,8 @@ def fill_clients_list():
 def fill_operation_dict():
     operations_dict = {}
     for operation in operations_list:
+        if not operation:
+            continue
         iban, type, sum, date = operation
         if iban not in operations_dict:
             operations_dict[iban] = []
@@ -79,16 +81,37 @@ types_dict = fill_types_dict(types_list)
 clients_dict = fill_clients_list()
 operations_dict = fill_operation_dict()
 
-balance_sheet = {}
+def calculate_balance():
+    operations_dict = fill_operation_dict()
+    balance_sheet = {}
+    for iban, operations in operations_dict.items():
+        current_iban = 0
+        for operation in operations:
+            type = operation['type']
 
-for iban, operations in operations_dict.items():
-    current_iban = 0
-    for operation in operations:
-        type = operation['type']
+            sum = float(operation['sum'])
+            multiplier = 1 if type == "Вноска" else -1
 
-        sum = float(operation['sum'])
-        multiplier = 1 if type == "Вноска" else -1
+            current_iban += sum * multiplier
+        balance_sheet[iban] = current_iban
 
-        current_iban += sum * multiplier
-    balance_sheet[iban] = current_iban
+    return balance_sheet
+
+balance_sheet = calculate_balance()
+
+def operations_full_list_func():
+    operations_full_list = []
+    for operation in operations_list:
+        iban, type, sum, date = operation
+        sum = float(sum)
+        operation_type_string = types_dict[type]
+
+        egn = [x[0] for x in accounts_list if x[1] == iban][0]
+        client_name = [x[1] for x in clients_list if x[0] == egn][0]
+
+        temp_operation_list = [iban, egn, client_name, operation_type_string, sum, date]
+        operations_full_list.append(temp_operation_list)
+
+    return operations_full_list
+
 

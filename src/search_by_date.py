@@ -23,7 +23,7 @@ class SearchByDate:
         table.pack(fill=tk.BOTH, expand=True)
         table["columns"] = ('acc', 'egn','full_name', 'operation', 'amount')
 
-        table.heading("#0", text="Index")
+        table.heading("#0", text="Номер")
         table.column("#0", width=20)
 
         table.heading("acc", text="Акаунт")
@@ -32,7 +32,7 @@ class SearchByDate:
         table.heading("full_name",text="Име")
         table.column("full_name", width=70)
 
-        table.heading("egn",text="Егн")
+        table.heading("egn",text="ЕГН")
         table.column("egn", width=50)
 
         table.heading("operation",text="Oперация")
