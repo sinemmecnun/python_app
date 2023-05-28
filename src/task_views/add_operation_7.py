@@ -4,7 +4,7 @@ from datetime import date
 from tkinter import END
 from tkinter.ttk import Combobox
 
-from src.file_data.file_data import clients_list, types_list, operations_list, fill_clients_dict
+from src.file_data.file_data import clients_list, types_list, operations_list, fill_clients_dict, types_dict
 
 
 class AddOperation:
@@ -28,8 +28,13 @@ class AddOperation:
 
         def add_operation():
             iban_temp = iban_combobox.get()
+            if iban_temp == "Изберете ЕГН":
+                return
+
             operation_type = operation_type_combobox.get()
             operation_type_string = [x[0] for x in types_list if x[1] == operation_type][0]
+
+
             operation_sum = sum_textbox.get('1.0', 'end-1c')
             try:
                 operation_sum = float(operation_sum)
